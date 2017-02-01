@@ -1,0 +1,34 @@
+<!--
+Bamboo Active Directory binding XML File. Change the below as needed for your org, then never ever plaintext the password.  
+-->
+
+
+<atlassian-user>
+	<repositories>
+	
+	<ldap key="ldapRepository" name="Active Directory" cache="true">
+    	<host>domain.controller.domain.com</host>
+    	<port>389</port>
+<!-- secure ldap: 636 -->
+    	<securityPrincipal>[insert DN of user account here]</securityPrincipal>
+    	<securityCredential>redacted</securityCredential>
+    	<securityProtocol>plain</securityProtocol>
+    	<securityAuthentication>simple</securityAuthentication>
+    	<baseContext>[base context to find your authenticated user account.probably dc=domain,dc=com]</baseContext>
+        <baseUserNamespace>[base context to find your users. probably dc=domain,dc=com]</baseUserNamespace>
+    	<baseGroupNamespace>[likewise, but for groups. never got this working right.</baseGroupNamespace>
+    	<usernameAttribute>sAMAccountName</usernameAttribute>
+    	<userSearchFilter>(objectClass=user)</userSearchFilter>
+    	<firstnameAttribute>givenname</firstnameAttribute>
+    	<surnameAttribute>sn</surnameAttribute>
+    	<emailAttribute>mail</emailAttribute>
+    	<groupnameAttribute>cn</groupnameAttribute>
+    	<groupSearchFilter>(objectClass=group)</groupSearchFilter>
+    	<groupSearchAllDepths>true</groupSearchAllDepths>
+    	<membershipAttribute>memberOf</membershipAttribute>
+	</ldap>
+    
+    <hibernate name="Hibernate Repository" key="hibernateRepository" description="Hibernate Repository" cache="true"/>
+    
+    </repositories>
+</atlassian-user>
